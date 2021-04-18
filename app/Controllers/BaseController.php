@@ -14,6 +14,7 @@ namespace App\Controllers;
  * @package CodeIgniter
  */
 
+use CodeIgniter\Config\Services;
 use CodeIgniter\Controller;
 
 class BaseController extends Controller
@@ -27,6 +28,7 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = [];
+	protected $sessio;	
 
 	/**
 	 * Constructor.
@@ -41,6 +43,9 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+		if(session_status() == PHP_SESSION_NONE){
+			$this->session = Services::session();	
+		}
 	}
 
 }
